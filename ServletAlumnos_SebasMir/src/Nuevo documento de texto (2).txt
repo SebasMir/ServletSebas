@@ -1,0 +1,43 @@
+    public XmlMarshaller() {
+
+    }
+
+    public void alumnToXml(Curso cds, File rf) {
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(Curso.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+            //Optional
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            //Do the job
+            jaxbMarshaller.marshal(cds, rf);
+
+            //Optional: output pretty printed
+            //jaxbMarshaller.marshal(cds, System.out);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        String code = request.getParameter("code");
+        XmlMarshaller xmlDH = new XmlMarshaller();
+        SQLConnect mysql = new SQLConnect();
+        Connection conn = mysql.conectar();
+        Alumnos al = new Alumnos();
+        
+        
+        response.setContentType("text/plain");
+//        response.getWriter().print(xmlDH.alumnToXml(al));
